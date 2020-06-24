@@ -5,10 +5,10 @@
       <el-button type="primary" icon="el-icon-edit"></el-button>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>视频管理</el-breadcrumb-item>
-        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-        <el-breadcrumb-item>其他</el-breadcrumb-item>
+        <!-- <el-breadcrumb-item v-if="current">132</el-breadcrumb-item> -->
+        <el-breadcrumb-item :to="current.path" v-if="current">{{current.label}}</el-breadcrumb-item>
       </el-breadcrumb>
+      <!-- </el-breadcrumb> -->
     </div>
 
     <!--右侧-->
@@ -28,10 +28,22 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  data(){
-    return{
-      userImg:require("../assets/images/user.png")
+  computed: {
+    ...mapState({
+      current: state => state.tab.currentMenu
+    })
+  },
+  data() {
+    return {
+      userImg: require("../assets/images/user.png")
+    };
+  },
+  methods: {
+    collapseMenu() {
+      this.$store.commit("coll");
     }
   }
 };
@@ -61,7 +73,7 @@ export default {
   font-size: 14px;
 }
 
-.el-dropdown{
+.el-dropdown {
   margin-right: 20px;
 }
 
@@ -70,4 +82,8 @@ export default {
   height: 45px;
   border-radius: 15px;
 } */
+
+.el-breadcrumb__item:last-child .el-breadcrumb__inner {
+  color: #606266;
+}
 </style>
