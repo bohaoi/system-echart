@@ -87,7 +87,8 @@ export default {
   },
   methods: {
     clickMenu(item) {
-      this.$store.commit("selectMenu",item);
+      this.$router.push({ name: item.name });
+      this.$store.commit("selectMenu", item);
     }
   }
 };

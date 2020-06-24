@@ -1,19 +1,50 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Index from '../views/Index'
- 
-Vue.use(VueRouter)
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Index from "../views/Index";
 
-  const routes = [
+Vue.use(VueRouter);
+
+const routes = [
   {
-    path: '/',
-    name: 'index',
-    component: Index
-  }
-]
+    path:'/',
+    redirect:"/index"
+  },
+  {
+    path: "/index",
+    name: "index",
+    component: Index,
+    children: [
+      {
+        path: "/",
+        name: "home",
+        component: () => import("@/views/Home/Home")
+      },
+      {
+        path: "/page1",
+        name: "page1",
+        component: () => import("@/views/Other/PageOne")
+      },
+      {
+        path: "/page2",
+        name: "page2",
+        component: () => import("@/views/Other/PageTwo")
+      },
+      {
+        path: "/video",
+        name: "video",
+        component: () => import("@/views/VideoManage/VideoManage")
+      },
+      {
+        path: "/user",
+        name: "user",
+        component: () => import("@/views/UserManage/UserManage")
+      },
+    ],
+  },
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

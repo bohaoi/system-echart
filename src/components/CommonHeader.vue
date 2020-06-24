@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     collapseMenu() {
-      this.$store.commit("coll");
+      // this.$store.commit("coll");
     }
   }
 };
