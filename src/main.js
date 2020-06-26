@@ -8,6 +8,8 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 //2.引入axios
 import http from './api/config'
+//3.引入mock
+import './mock'
 
 Vue.use(ElementUI);
 
