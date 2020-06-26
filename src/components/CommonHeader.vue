@@ -2,7 +2,7 @@
   <div class="content">
     <!--左侧-->
     <div class="l-content">
-      <el-button type="primary" icon="el-icon-edit"></el-button>
+      <el-button class="l-button" type="primary" icon="el-icon-s-operation" @click="collapseMenu"></el-button>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <!-- <el-breadcrumb-item v-if="current">132</el-breadcrumb-item> -->
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     collapseMenu() {
-      // this.$store.commit("coll");
+      this.$store.commit("collapseMenu");
     }
   }
 };
@@ -62,9 +62,16 @@ export default {
 }
 
 .el-button {
-  padding: 10px 15px;
+  padding: 8px 10px;
   margin-right: 20px;
-  margin-left: 20px;
+  margin-left: 17px;
+  /* background-color: rgb(136, 121, 121); */
+  border: none;
+  /* line-height: 1; */
+}
+
+.el-button--primary {
+  border-color: transparent;
 }
 
 .el-breadcrumb {

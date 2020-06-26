@@ -1,6 +1,11 @@
 <template>
   <div class="c-aside">
-    <el-menu class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff">
+    <el-menu
+      :collapse="isCollapse"
+      class="el-menu-vertical-demo"
+      background-color="#545c64"
+      text-color="#fff"
+    >
       <el-menu-item
         :index="item.path"
         v-for="item in noChildren"
@@ -41,6 +46,9 @@ export default {
     },
     hasChildren() {
       return this.asideMenu.filter(item => item.children);
+    },
+    isCollapse() {
+      return this.$store.state.tab.isCollapse;
     }
   },
   data() {
@@ -106,5 +114,10 @@ export default {
   height: 969px;
   background-color: "#545c64";
   padding: 0px;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>
