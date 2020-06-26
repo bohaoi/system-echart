@@ -6,9 +6,13 @@ import store from './store'
 //1.引入element-ui
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+//2.引入axios
+import http from './api/config'
+
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false
+Vue.prototype.$http = http;
 
 new Vue({
   router,
