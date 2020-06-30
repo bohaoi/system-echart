@@ -5,22 +5,40 @@
       <el-card shadow="hover" style="height:290px">
         <!--管理员-->
         <div class="user">
-          8
-          <!-- <img :src="userImg"/> -->
+          <img :src="userImg" />
+          <div class="userinfo">
+            <p class="name">Nick</p>
+            <p class="access">超级管理员</p>
+          </div>
         </div>
         <!--登录时间-->
-        <!-- <div>8</div> -->
+        <div class="login-info">
+          <p>
+            上次登录时间:
+            <span>2019年10月1号</span>
+          </p>
+          <p>
+            上次登录地点:
+            <span>上海</span>
+          </p>
+        </div>
       </el-card>
       <!--数据-->
       <el-card shadow="hover" style="height:522px; margin-top:20px;">24</el-card>
     </el-col>
     <el-col :span="16">
       <div class="num">
-        <el-card shadow="hover" v-for="item in 6" :key="item">
-          <i class="icon" icon="el-icon-picture"></i>
+        <el-card
+          class="num-card"
+          shadow="hover"
+          v-for="item in countData"
+          :key="item.name"
+          :body-style="{display:'flex',padding:0}"
+        >
+          <i class="icons" :class="`el-icon-${item.icon}`" :style="{background:item.color}"></i>
           <div class="detail">
-            <p class="nums">￥1234</p>
-            <p class="txt">今日支付订单</p>
+            <p class="nums">￥{{item.value}}</p>
+            <p class="txt">{{item.name}}</p>
           </div>
         </el-card>
       </div>
@@ -45,7 +63,45 @@
 export default {
   data() {
     return {
-      userImg: require("../../assets/images/user.png")
+      userImg: require("../../assets/images/user.png"),
+      countData: [
+        {
+          name: "今日支付订单",
+          value: 1234,
+          icon: "eleme",
+          color: "#2ec7c9"
+        },
+        {
+          name: "今日收藏订单",
+          value: 1234,
+          icon: "star-on",
+          color: "#ffb980"
+        },
+        {
+          name: "今日未支付订单",
+          value: 1234,
+          icon: "s-goods",
+          color: "#2ec7c9"
+        },
+        {
+          name: "本月支付订单",
+          value: 1234,
+          icon: "success",
+          color: "#2ec7c9"
+        },
+        {
+          name: "本月未支付订单",
+          value: 1234,
+          icon: "success",
+          color: "#ffb980"
+        },
+        {
+          name: "本月收藏订单",
+          value: 1234,
+          icon: "success",
+          color: "#2ec7c9"
+        }
+      ]
     };
   },
   mounted() {
@@ -66,22 +122,64 @@ export default {
 .home {
   /* background: #000; */
 }
+.user {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #cccccc;
+}
+.user img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 40px;
+}
+.userinfo .name {
+  font-size: 32px;
+}
+.userinfo .access {
+  margin-top: 15px;
+  color: #999999;
+}
+.login-info p {
+  line-height: 28px;
+  font-size: 16px;
+  color: #999999;
+}
+
+.login-info p span {
+  color: #666666;
+}
 .num {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 .num .el-card {
   width: 32%;
   margin-bottom: 20px;
 }
-.icon {
+
+.icons {
+  float: left;
   font-size: 30px;
   width: 80px;
   height: 80px;
   text-align: center;
   line-height: 80px;
-  color: #fff;
+  color: #52474b;
+}
+.detail {
+  margin-left: 20px;
+  display: flex;
+  /* margin-top: 19px; */
+  flex-direction: column;
+  justify-content: center;
+}
+.nums{
+  margin-bottom: 5px;
 }
 .graph {
   margin-top: 20px;
