@@ -24,7 +24,11 @@
         </div>
       </el-card>
       <!--数据-->
-      <el-card shadow="hover" style="height:522px; margin-top:20px;">24</el-card>
+      <el-card shadow="hover" style="height:535px; margin-top:20px;">
+        <el-table :data= 'tableData'>
+          <el-table-column show-overflow-tooltip v-for="(val,key) in tableLabel" :key="key" :prop="key" :label="val"></el-table-column>
+        </el-table>
+      </el-card>
     </el-col>
     <el-col :span="16">
       <div class="num">
@@ -101,19 +105,33 @@ export default {
           icon: "success",
           color: "#2ec7c9"
         }
-      ]
+      ],
+      tableData: [],
+      tableLabel: {
+        name: "名称",
+        todayBuy: "今日购买",
+        monthBuy: "本月购买",
+        totalBuy: "总购买"
+      }
     };
   },
-  mounted() {
-    //调用/home/getData接口
-    this.$http
-      .get("/home/getData")
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  methods: {
+    getTableData() {
+      //调用/home/getData接口
+      this.$http
+        .get("/home/getData")
+        .then(res => {
+          res = res.data;
+          this.tableData = res.data.tableData;
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
+  created(){
+    this.getTableData()
   }
 };
 </script>
@@ -178,7 +196,7 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
-.nums{
+.nums {
   margin-bottom: 5px;
 }
 .graph {
