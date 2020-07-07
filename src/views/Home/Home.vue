@@ -173,7 +173,7 @@ export default {
           });
           this.echartData.user.series.push({
             name: "活跃用户",
-            data: res.data.userData.push(item => item.active),
+            data: res.data.userData.map(item => item.active),
             type: "bar",
             barGap: 0
           });
