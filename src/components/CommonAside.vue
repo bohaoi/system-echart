@@ -6,6 +6,8 @@
       background-color="#545c64"
       text-color="#fff"
     >
+    <h3 v-show="!isCollapse">Gree各地销售概况</h3>
+    <h3 v-show="isCollapse">Gree</h3>
       <el-menu-item
         :index="item.path"
         v-for="item in noChildren"
@@ -105,6 +107,12 @@ export default {
 <style scoped>
 .el-menu {
   border: none;
+}
+h3{
+  color:#ffffff;
+  text-align: center;
+  line-height: 48px;
+  font-size: 17px;
 }
 .c-aside {
   width: 100%;

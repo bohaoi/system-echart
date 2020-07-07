@@ -25,8 +25,14 @@
       </el-card>
       <!--数据-->
       <el-card shadow="hover" style="height:535px; margin-top:20px;">
-        <el-table :data= 'tableData'>
-          <el-table-column show-overflow-tooltip v-for="(val,key) in tableLabel" :key="key" :prop="key" :label="val"></el-table-column>
+        <el-table :data="tableData">
+          <el-table-column
+            show-overflow-tooltip
+            v-for="(val,key) in tableLabel"
+            :key="key"
+            :prop="key"
+            :label="val"
+          ></el-table-column>
         </el-table>
       </el-card>
     </el-col>
@@ -48,15 +54,15 @@
       </div>
       <!--echart-->
       <el-card shadow="hover">
-        <div style="height:280px"></div>
+        <echart style="height:280px" :chartData="echartData.order"></echart>
       </el-card>
       <!--图-->
       <div class="graph">
-        <el-card class="l-graph">
-          <div style="height:260px"></div>
+        <el-card class="l-graph" shadow="hover">
+          <echart style="height:260px" :chartData="echartData.user"></echart>
         </el-card>
-        <el-card class="r-graph">
-          <div style="height:260px"></div>
+        <el-card class="r-graph" shadow="hover">
+          <echart style="height:260px" :chartData='echartData.video' :isAxisChart = false></echart>
         </el-card>
       </div>
     </el-col>
@@ -64,7 +70,12 @@
 </template>
 
 <script>
+import echart from "../../components/EChart";
+
 export default {
+  components: {
+    echart
+  },
   data() {
     return {
       userImg: require("../../assets/images/user.png"),
@@ -112,6 +123,19 @@ export default {
         todayBuy: "今日购买",
         monthBuy: "本月购买",
         totalBuy: "总购买"
+      },
+      echartData: {
+        order: {
+          xData: [],
+          series: []
+        },
+        user: {
+          xData: [],
+          series: []
+        },
+        video: {
+          series: []
+        }
       }
     };
   },
@@ -123,15 +147,50 @@ export default {
         .then(res => {
           res = res.data;
           this.tableData = res.data.tableData;
-          console.log(res)
+          console.log(res);
+
+          //订单折线图
+          const order = res.data.orderData;
+          this.echartData.order.xData = order.date;
+
+          //1.取出series中的name部分---键名
+          let keyArray = Object.keys(order.data[0]);
+          //2.循环添加数据
+          keyArray.forEach(key => {
+            this.echartData.order.series.push({
+              name: key === "wechat" ? "小程序" : key,
+              data: order.data.map(item => item[key]),
+              type: "line"
+            });
+          });
+
+          //用户柱状图
+          this.echartData.user.xData = res.data.userData.map(item => item.date);
+          this.echartData.user.series.push({
+            name: "新增用户",
+            data: res.data.userData.map(item => item.new),
+            type: "bar"
+          });
+          this.echartData.user.series.push({
+            name: "活跃用户",
+            data: res.data.userData.push(item => item.active),
+            type: "bar",
+            barGap: 0
+          });
+
+          //视频饼图
+          this.echartData.video.series.push({
+            data: res.data.videoData,
+            type: "pie"
+          });
         })
         .catch(err => {
           console.log(err);
         });
     }
   },
-  created(){
-    this.getTableData()
+  created() {
+    this.getTableData();
   }
 };
 </script>
