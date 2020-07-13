@@ -1,6 +1,6 @@
 <template>
   <div class="common-table">
-    <el-table :data="tableData" style="height: 90%">
+    <el-table :data="tableData" style="height: 90%" stripe v-loading="config.loading">
       <!--序号-->
       <el-table-column label="序号" width="85">
         <template slot-scope="scope">
@@ -23,8 +23,8 @@
       <!--编辑、删除-->
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
