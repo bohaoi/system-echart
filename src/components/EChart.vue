@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100%" ref="echart">echart</div>
+  <div style="height:100%" ref="echart">加载中......</div>
 </template>
 
 <script>
