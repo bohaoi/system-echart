@@ -25,8 +25,8 @@ for (let i = 0; i < count; i++) {
       id: Mock.Random.guid(),
       name: Mock.Random.cname(),
       addr: Mock.mock('@county(true)'),
-      // 'age|18-60': 1,
-      phone: Mock.Random.phone(),
+      'age|18-60': 1,
+      // phone: Mock.Random.phone(),
       birth: Mock.Random.date(),
       sex: Mock.Random.integer(0, 1)
     })
@@ -60,14 +60,13 @@ export default {
    * @return {{code: number, data: {message: string}}}
    */
   createUser: config => {
-    const { name, addr, phone, birth, sex } = JSON.parse(config.body)
+    const { name, addr, age, birth, sex } = JSON.parse(config.body)
     console.log(JSON.parse(config.body))
     List.unshift({
       id: Mock.Random.guid(),
       name: name,
       addr: addr,
       age: age,
-      phone:phone,
       birth: birth,
       sex: sex
     })
