@@ -1,5 +1,5 @@
 <template>
-  <div class="pageTow">pagetwo</div>
+  <div class="pageTow">test2</div>
 </template>
 
 <script>

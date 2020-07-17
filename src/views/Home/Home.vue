@@ -7,7 +7,7 @@
         <div class="user">
           <img :src="userImg" />
           <div class="userinfo">
-            <p class="name">Nick</p>
+            <p class="name">Gree</p>
             <p class="access">超级管理员</p>
           </div>
         </div>
@@ -15,11 +15,11 @@
         <div class="login-info">
           <p>
             上次登录时间:
-            <span>2019年10月1号</span>
+            <span>2020年7月1号</span>
           </p>
           <p>
             上次登录地点:
-            <span>上海</span>
+            <span>珠海</span>
           </p>
         </div>
       </el-card>
@@ -82,37 +82,37 @@ export default {
       countData: [
         {
           name: "今日支付订单",
-          value: 1234,
+          value: 1345,
           icon: "eleme",
           color: "#2ec7c9"
         },
         {
           name: "今日收藏订单",
-          value: 1234,
+          value: 156,
           icon: "star-on",
           color: "#ffb980"
         },
         {
           name: "今日未支付订单",
-          value: 1234,
+          value: 734,
           icon: "s-goods",
           color: "#2ec7c9"
         },
         {
           name: "本月支付订单",
-          value: 1234,
+          value: 1897,
           icon: "success",
           color: "#2ec7c9"
         },
         {
           name: "本月未支付订单",
-          value: 1234,
+          value: 136,
           icon: "success",
           color: "#ffb980"
         },
         {
           name: "本月收藏订单",
-          value: 1234,
+          value: 561,
           icon: "success",
           color: "#2ec7c9"
         }
@@ -120,9 +120,9 @@ export default {
       tableData: [],
       tableLabel: {
         name: "名称",
-        todayBuy: "今日购买",
-        monthBuy: "本月购买",
-        totalBuy: "总购买"
+        todayBuy: "今日销售额",
+        monthBuy: "本月销售额",
+        totalBuy: "总销售额"
       },
       echartData: {
         order: {

@@ -2,9 +2,9 @@ import Mock from 'mockjs'
 export default {
   getMenu: config => {
     const { username, password } = JSON.parse(config.body)
-    console.log(JSON.parse(config.body))
+    // console.log(JSON.parse(config.body))
     // 先判断用户是否存在
-    if (username === 'admin' || username === 'staff') {
+    if (username === 'admin' || username === 'Gree') {
       // 判断账号和密码是否对应
       if (username === 'admin' && password === 'admin') {
         return {
@@ -21,7 +21,7 @@ export default {
               {
                 path: '/video',
                 name: 'video',
-                label: '视频管理页',
+                label: '产品管理页',
                 icon: 'video-play',
                 url: 'VideoManage/VideoManage'
               },
@@ -57,7 +57,7 @@ export default {
             message: '获取成功'
           }
         }
-      } else if (username === 'staff' && password === '123456') {
+      } else if (username === 'Gree' && password === '123456') {
         return {
           code: 20000,
           data: {
@@ -72,7 +72,7 @@ export default {
               {
                 path: '/video',
                 name: 'video',
-                label: '视频管理页',
+                label: '产品管理页',
                 icon: 'video-play',
                 url: 'VideoManage/VideoManage'
               }
